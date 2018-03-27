@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+
+          >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+ <h:head>
+ 	<meta charset="utf-8"/>
+    <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet"/>
+</h:head>
+
+<h:body>
+<ui:param name="root" value="#{request.contextPath}" />
+<main class="page">
+<div class="container">
+		<div id="wapper">
+
+	        	<div class="row">
+        			<div class="col-md-8" align="left">
+                  		<a href="../welcome.html">
+                  			<img  src="../img/logoSE.png" width="60%" height="60%"/>
+                  		</a>
+                  	</div>
+                  	<div class="col-md-4"  >
+                  		<div class="user-credencials">
+	                  		<ul class="list-unstyled">
+				                <li>
+				                  <span class="user-credencials__name">#{identidadBean.verificacionIdentidadVO.nombreUsuario}</span>
+				                  <button type="button" class="btn btn-link pull-right">Salir</button>
+				                </li>
+				                <li>#{identidadBean.verificacionIdentidadVO.fechaActualS}</li>
+				            </ul>
+                  		</div>
+                  	</div>
+                 </div>
+
+				<div class="row" >
+	         		<div  class="col-md-12" align="center">
+					<hr/>
+					</div>
+         		</div>
+
+				<div align="center">
+	              	<div id="contenido" align="center">
+	 					<ui:insert name="contenido"  >
+	                      </ui:insert>
+	       			</div>
+     			</div>
+
+    			<div class="row" >
+	         		<div  class="col-md-12" align="center">
+					<hr/>
+					</div>
+         		</div>
+
+				<div class="row" >
+		         		<div  class="col-md-12" align="center">
+							<h6>${direccionInsurgentes}</h6>
+						</div>
+				</div>
+
+				<div class="row" >
+		         		<div  class="col-md-12" align="center">
+							<h6>DERECHOS RESERVADOS</h6>
+						</div>
+				</div>
+
+				<div class="row" >
+		         		<div  class="col-md-12" align="center">
+						&nbsp;
+						</div>
+		         </div>
+
+		</div>
+</div>
+</main>
+<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+<script src="#{root}/jquery/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="#{root}/jquery/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+<script type="text/javascript">
+
+	function validarVacio ( obj){
+		return $(obj).val().length === 0 || $(obj).val() === '-1';
+	}
+
+	$('.fechaStyle').datepicker({changeYear: true});
+
+	$gmx(document).ready(function() {
+	  $('#fechaN').datepicker({changeYear: true}).on('changeDate', function(e) {
+		  console.log("noooooooooooooooooooooooo");
+			var nameS=	this.id.split(':');
+			var name=	 nameS[nameS.length-1];
+			var reqId = "#req_" +name;
+			var reqIdStar = "#req_star_" +  name;
+
+			if ($(this).val().length === 0 || $(this).val() === '-1') {
+//	 		if 	(validarVacio ( $(this)))
+				$(this).addClass('form-control-error');
+				$(reqId).removeClass('hidden');
+				$(reqIdStar).addClass('form-text-error');
+
+			} else {
+
+				$(this).removeClass('form-control-error');
+				$(reqId).addClass('hidden');
+				$(reqIdStar).removeClass('form-text-error');
+
+			}
+	    });
+	});
+
+	$(".REQUERIDO").each(function() {
+
+		$(this).blur(function() {
+
+		var nameS=	this.id.split(':');
+		var name=	 nameS[nameS.length-1];
+		var reqId = "#req_" +name;
+		var reqIdStar = "#req_star_" +  name;
+
+		if ($(this).val().length === 0 || $(this).val() === '-1') {
+// 		if 	(validarVacio ( $(this)))
+			$(this).addClass('form-control-error');
+			$(reqId).removeClass('hidden');
+			$(reqIdStar).addClass('form-text-error');
+
+		} else {
+
+			$(this).removeClass('form-control-error');
+			$(reqId).addClass('hidden');
+			$(reqIdStar).removeClass('form-text-error');
+
+		}
+		});
+		});
+
+
+	$(".CADENA").each(function() {
+
+		$(this).blur(function() {
+
+		var re = /^[a-zA-Z áÁéÉíÍóÓúÚÑñ]*$/;
+
+		var nameS=	this.id.split(':');
+		var name=	 nameS[nameS.length-1];
+		var reqId = "#req_type_" +name;
+		var reqIdStar = "#req_star_" +  name;
+
+		var required=$(this).hasClass('REQUERIDO');
+		var requerido=$(this).val().length === 0 || $(this).val() === '-1';
+		var ban =false;
+			 if (required){
+				if (requerido){
+					 ban =true;
+				}
+			}
+
+			 if (ban){}
+			 else if ( re.test($(this).val())) {
+				$(this).removeClass('form-control-error');
+				$(reqId).addClass('hidden');
+				$(reqIdStar).removeClass('form-text-error');
+
+			} else{
+				$(this).addClass('form-control-error');
+				$(reqId).removeClass('hidden');
+				$(reqIdStar).addClass('form-text-error');
+			}
+		});
+		});
+
+$(".RFC").each(function() {
+
+		$(this).blur(function() {
+
+			var valid = '^(([A-Z]|[a-z]|\s){1})(([A-Z]|[a-z]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
+			var validRfc=new RegExp(valid);
+
+		var nameS=	this.id.split(':');
+		var name=	 nameS[nameS.length-1];
+		var reqId = "#req_type_" +name;
+		var reqIdStar = "#req_star_" +  name;
+
+		var required=$(this).hasClass('REQUERIDO');
+		var requerido=$(this).val().length === 0 || $(this).val() === '-1';
+		var ban =false;
+			 if (required){
+				if (requerido){
+					 ban =true;
+				}
+			}
+
+			 if (ban){}
+			 else if ( !($(this).val().match(validRfc)==null)) {
+				$(this).removeClass('form-control-error');
+				$(reqId).addClass('hidden');
+				$(reqIdStar).removeClass('form-text-error');
+
+			} else{
+				$(this).addClass('form-control-error');
+				$(reqId).removeClass('hidden');
+				$(reqIdStar).addClass('form-text-error');
+			}
+		});
+		});
+
+$(".CURP").each(function() {
+
+	$(this).blur(function() {
+
+// 		var valid = '^(([A-Z]|[a-z]|\s){1})(([A-Z]|[a-z]){3})([0-9]{6})((([A-Z]|[a-z]|[0-9]){3}))';
+// 		var valid = '^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$';
+		var valid="^([A-Z]{1}[AEIOU]{1}[A-Z]{2}[0-9]{2}" +
+		"(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])" +
+		"[HM]{1}" +
+		"(AS|BC|BS|CC|CS|CH|CL|CM|DF|DG|GT|GR|HG|JC|MC|MN|MS|NT|NL|OC|PL|QT|QR|SP|SL|SR|TC|TS|TL|VZ|YN|ZS|NE)" +
+		"[B-DF-HJ-NP-TV-Z]{3}" +
+		"[0-9A-Z]{1}[0-9]{1}$)";
+		var validRfc=new RegExp(valid);
+
+	var nameS=	this.id.split(':');
+	var name=	 nameS[nameS.length-1];
+	var reqId = "#req_type_" +name;
+	var reqIdStar = "#req_star_" +  name;
+
+	var required=$(this).hasClass('REQUERIDO');
+	var requerido=$(this).val().length === 0 || $(this).val() === '-1';
+	var ban =false;
+		 if (required){
+			if (requerido){
+				 ban =true;
+			}
+		}
+
+		 if (ban){}
+		 else if ( !($(this).val().toUpperCase().match(validRfc)==null)) {
+			$(this).removeClass('form-control-error');
+			$(reqId).addClass('hidden');
+			$(reqIdStar).removeClass('form-text-error');
+
+		} else{
+			$(this).addClass('form-control-error');
+			$(reqId).removeClass('hidden');
+			$(reqIdStar).addClass('form-text-error');
+		}
+	});
+	});
+
+
+
+
+</script>
+</h:body>
+</html>

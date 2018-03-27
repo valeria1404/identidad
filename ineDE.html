@@ -10,6 +10,8 @@
 	 <script type="text/javascript" language="javascript" src="https://framework-gb.cdn.gob.mx/sso/js/plugin/fiel-sat/1.0/sat-fiel-1.0.0.source.all.js"></script>
 	</head>
 	<body>
+	<ui:composition template="/template/template.html">
+	<ui:define name="contenido">
 		<!-- Contenido -->
 	<main class="page">
 		<!-- HTML DE INVOCACIÓN -->
@@ -27,55 +29,43 @@
 			</div>
 			<div class="row">
 	      <div class="col-md-12" align="center">
-	      	<img  src="img/ine/ineABC.png" width="60%" height="60%"/>
+	      	<img  src="img/ine/ineDE_validar.png" width="60%" height="60%"/>
 	      </div>
       </div>
-			<div class="row">
-	      <div class="col-md-12" align="center">
-	      <a  Class="btn btn-default" href="ineABC.html" value="">Seleccionar modelo A,B y C</a>
-	      </div>
-      </div>
+			<form class="form-horizontal" id="datos"  >
+
+				<div class="form-group">
+					<label class="col-sm-5  control-label" for="cic">1. C&oacute;digo de Identificaci&oacute;n de la Credencial (CIC) </label>
+					<div class="col-sm-5">
+						<input id="cic" Class="form-control REQUERIDO"  value=""
+						 required="true" requiredMessage=" C&oacute;digo de Identificaci&oacute;n de la Credencial es Requerido" onblur=""
+						/>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-5  control-label" for="cveElector">2. Clave de elector&nbsp;</label>
+					<div class="col-sm-5">
+						<input id="cveElector" Class="form-control"  value="" />
+					</div>
+				</div>
+				<div class="row">
+					 <div class="col-md-12" align="center">
+							<Button  Class="btn btn-primary"  value="" >Validar</Button>
+					</div>
+				</div>
+			</form>
 			<div class="row" >
-	    	<div  class="col-md-12" align="center">
-					&nbsp;
-				</div>
-	     </div>
-      <div class="row" >
-	    	<div  class="col-md-12" align="center">
-					&nbsp;
-				</div>
-	    </div>
-    	<div class="row">
-      	<div class="col-md-12" align="center">
-      		<img  src="img/ine/ineDE.png" width="60%" height="60%"/>
-        </div>
-     </div>
-    <div class="row">
-	    <div class="col-md-12" align="center">
-		     <a  Class="btn btn-default" href="ineDE.html" value="">Seleccionar modelo D y E</a>
-	    </div>
-    </div>
-		<div class="row" >
-			<div  class="col-md-12" align="center">
+				<div  class="col-md-12" align="center">
 				&nbsp;
-			</div>
-	 </div>
-	<div class="row" >
-		<div  class="col-md-12" align="center">
-			&nbsp;
-		</div>
-	</div>
- <div class="row" >
-	 <div  class="col-md-12" align="center">
-		&nbsp;
-	<outputLink value=""  Class="btn btn-default"  >Validacion de datos!</outputLink>
-	</div>
-</div>
+				</div>
+		 </div>
 		<!-- ./HTML DE INVOCACIÓN -->
 		</div>
 	</main>
 		<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 		<script src="assets/js/jQuery/jquery.min.js"></script>
-
+	</ui:define>
+	</ui:composition>
   </body>
 </html>

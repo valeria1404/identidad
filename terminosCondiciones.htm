@@ -1,0 +1,173 @@
+<div class="modal bs-example-modal-lg" id="termsModal"
+	tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content" id="terMod" ng-show="tipoFirma == 'firmaElectronica'">
+			<div class="modal-header">
+				<h4 class="modal-title">T&eacute;rminos y condiciones</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<textarea hidden="hidden" disabled="disabled" class="col-sm-12" name="documento"
+							id="documento"></textarea>
+						<p>Estimado usuario, te pedimos leer cuidadosamente los
+							siguientes t&eacute;rminos y condiciones que regulan el uso del
+							sistema.</p>
+						<p>Mediante tu firma electr&oacute;nica, el titular de este
+							certificado digital, bajo protesta de decir verdad:</p>
+						<ol>
+							<li>Reconocer que has le&iacute;do y que aceptas todos y
+								cada uno de los <a
+								href="https://www.gob.mx/terminos"
+								data-toggle="tooltip"
+								title="Consulta T&eacute;rminos y condiciones."
+								data-original-title="Default tooltip" target="_blanc">t&eacute;rminos
+									y condiciones</a> de uso y <a
+								href="https://www.gob.mx/privacidadsimplificado"
+								data-toggle="tooltip"
+								title="Consulta Pol&iacute;ticas de privacidad."
+								data-original-title="Default tooltip" target="_blanc">pol&iacute;ticas
+									de privacidad</a> de este sitio de internet;
+							</li>
+							<li>Manifiestas que aceptas y reconoces que podr&aacute;s
+								ser notificado electr&oacute;nicamente a trav&eacute;s del
+								presente portal por parte de la Secretar&iacute;a de
+								Econom&iacute;a para cualquier cuesti&oacute;n relacionada con
+								el procedimiento regulado dentro del reglamento para la
+								autorizaci&oacute;n de uso de denominaciones y razones sociales.</li>
+							<li>Reconoces la existencia y veracidad de la
+								informaci&oacute;n ingresada; y</li>
+							<li>Manifiestas que conoces la responsabilidad civil,
+								administrativa y penal en que podr&iacute;as incurrir en caso de
+								falsedad.</li>
+						</ol>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Botón primario -->
+						<div class="pull-right">
+							<button type="button" class="btn btn-default" id="btnCancelarTyC"
+								data-dismiss="modal">Cancelar</button>
+							<button type="button" class="btn btn-primary" id="btonAceptarTyC">Aceptar</button>
+						</div>
+						<div style="height: 100px"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-content" id="modalSinFirma" ng-show="tipoFirma == 'firmaAutografa'">
+			<div class="modal-header">
+				<h4 class="modal-title">Finalizar tr&aacute;mite</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<textarea hidden="hidden" disabled="disabled" class="col-sm-12" name="documento"
+							id="documento"></textarea>
+						<p>Al presionar el bot&oacute;n "Finalizar" estar&aacute;s concluyendo el tr&aacute;mite. &iquest;Est&aacute;s seguro que la informaci&oacute;n que has 
+						proporcionado es la correcta?</p>
+						
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="modal-footer">
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- Botón primario -->
+						<div class="pull-right">
+							<button type="button" class="btn btn-default" id="Cancelar"
+								data-dismiss="modal">Cancelar</button>
+							<button type="button" data-dismiss="modal" class="btn btn-primary" id="Aceptar" onclick="finSinFirma()">Finalizar</button>
+						</div>
+						<div style="height: 100px"></div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+<!-- Modal eFirma-->
+<div class="modal" id="modalEfirma" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" style="width: 60%">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">Firma de t&eacute;rminos y condiciones</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10">
+						<form class="form-horizontal" role="form"
+							action="getDatosFirmaSinRedireccion.htm" method="POST"
+							id="target">
+							<br> <br> <br> <input type="hidden" name="infra"
+								value="SE">
+							<div class="form-group hidden">
+								<input type="text" name="signText" id="signText"> <input
+									type="text" name="certText" id="certText"> <input
+									type="text" name="shaText" id="shaText"> <input
+									type="text" name="tipoShaText" id="tipoShaText">
+							</div>
+
+
+							<div class="row">
+							<div class="col-md-8">
+							<div class="form-group">
+								<label class="control-label" for="certI">Certificado:</label> <input
+									type="file" name="certI" id="certI" accept=".cer">
+							</div>
+							</div>
+							</div>
+
+							<div class="row">
+							<div class="col-md-8">
+							<div class="form-group">
+								<label class="control-label" for="keyI">Llave privada:</label> <input
+									type="file" name="keyI" id="keyI" accept=".key">
+							</div>
+							</div>
+							</div>
+
+							<div class="row">
+							<div class="col-md-8">
+							<div class="form-group">
+								<label class="control-label" for="keyP">Contrase&ntilde;a:</label>
+								<input type="password" class="form-control" name="keyP" id="keyP" value="" placeholder="Ingresa tu contrase&ntilde;a">
+							</div>
+							</div>
+							</div>
+
+							<div class="row">
+							<div class="col-md-8">
+							<div class="form-group pull-right">
+								<input type="button" class="btn btn-primary" value="Firmar" onclick="firmar256yGuardar()" >
+							</div>
+							</div>
+							</div>
+
+						</form>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</div>
+			<div class="modal-footer"></div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Disoluciones</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://framework-gb.cdn.gob.mx/favicon.ico" rel="shortcut icon">
+		<link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="https://framework-gb.cdn.gob.mx/sso/css/plugin/fiel-sat/1.0/fiel-bootstrap.all.css" />
+	 <script type="text/javascript" language="javascript" src="https://framework-gb.cdn.gob.mx/sso/js/plugin/fiel-sat/1.0/sat-fiel-1.0.0.source.all.js"></script>
+	</head>
+	<body>
+		<!-- Contenido -->
+	<main class="page">
+		<!-- HTML DE INVOCACIÓN -->
+		<div class="container">
+			<div class="row" >
+	   		<div  class="col-md-12" align="center">
+					<h3>DATOS DE LA PERSONA A VERIFICAR</h3>
+				</div>
+
+			<form class="form-horizontal" id="datos"  >
+
+			     <messages id="messages" showSummary="true"
+			      errorClass="alert alert-danger"
+			      infoClass="alert alert-info"
+			      fatalClass="alert alert-warning"
+			      warnClass="alert alert-warning"
+			      />
+
+				<div class="form-group">
+					<label class="col-sm-5  control-label" for="nombre">Nombre (s)&nbsp;<span id="req_star_nombre" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="nombre" name="nombre" value=""  Class="form-control"
+						 required="true" onblur=""  placeholder="Nombre de la persona a verificar"
+						requiredMessage="Nombre es obligatorio"
+						>
+						</input>
+						<small id="req_nombre" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+						<small id="req_type_nombre" class="form-text form-text-error hidden">Este campo NO es texto</small>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5  control-label" for="unoAp">Primer Apellido&nbsp;<span id="req_star_unoAp" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="unoAp"  value="" Class="form-control "
+						 required="true" onblur=""  placeholder="Primer Apellido de la persona a verificar"
+						requiredMessage="Primer Apellido es obligatorio"
+						/>
+						<small id="req_unoAp" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+						<small id="req_type_unoAp" class="form-text form-text-error hidden">Este campo NO es texto</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label" for="dosAp">Segundo Apellido&nbsp;<span id="req_star_dosAp" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="dosAp" value=""  Class="form-control"
+						 required="true" onblur=""   placeholder="Segundo Apellido de la persona a verificar"
+						requiredMessage="Segundo Apellido es obligatorio"
+						/>
+						<small id="req_dosAp" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+						<small id="req_type_dosAp" class="form-text form-text-error hidden">Este campo NO es texto</small>
+					</div>
+				</div>
+				<div class="form-group datepicker-group">
+					<label class="col-sm-5 control-label" for="fechaN">Fecha Nacimiento&nbsp;<span id="req_star_fechaN" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="fechaN" required="true" type="text" Class="form-control"  value=""
+						readonly="readonly" requiredMessage="Fecha Nacimiento es obligatorio"/>
+						<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+						<small id="req_fechaN" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label" for="curp">CURP&nbsp;<span id="req_star_curp" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="curp" value="" Class="form-control"
+						 required="true" onblur=""  onkeydown="upperCase(this)"  placeholder="CURP de la persona a verificar"
+						requiredMessage="CURP es Requerido"
+						/>
+						<small id="req_curp" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+						<small id="req_type_curp" class="form-text form-text-error hidden">Formato no v&aacute;lido</small>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label" for="rfc">RFC&nbsp;<span id="req_star_rfc" class="form-text">*</span>:</label>
+					<div class="col-sm-5">
+						<input id="rfc" value="" Class="form-control"
+						 required="true" onblur=""  onkeydown="upperCase(this)"  placeholder="RFC de la persona a verificar"
+						requiredMessage="RFC es Requerido"
+						/>
+						<small id="req_rfc" class="form-text form-text-error hidden">Este campo es obligatorio</small>
+						<small id="req_type_rfc" class="form-text form-text-error hidden">Formato no v&aacute;lido</small>
+					</div>
+				</div>
+
+
+
+				<div class="row" >
+		         		<div  class="col-md-12" align="center">
+						&nbsp;
+						</div>
+		         </div>
+
+				<div class="row">
+					 <div class="col-md-12" align="center">
+							<Button  Class="btn btn-primary" action="firma.html" value="">Siguiente</button>
+					</div>
+				</div>
+			</form>
+	    </div>
+		</div>
+	</main>
+		<script type="text/javascript">
+					$(document).ready(function() {
+							$('#fechaN').datepicker();
+						});
+		</script>
+		<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+		<script src="js/jQuery/jquery.min.js"></script>
+
+  </body>
+</html>

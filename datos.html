@@ -123,7 +123,7 @@
 	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('#fechaN').datepicker({changeYear: true}).on('changeDate', function(e) {
+		$('#fechaN').datepicker({changeYear: true,yearRange : 'c-65:c+20'}).on('changeDate', function(e) {
 			var nameS=	this.id.split(':');
 			var name=	 nameS[nameS.length-1];
 			var reqId = "#req_" +name;

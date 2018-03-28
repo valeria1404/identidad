@@ -8,6 +8,7 @@
 		<link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="https://framework-gb.cdn.gob.mx/sso/css/plugin/fiel-sat/1.0/fiel-bootstrap.all.css" />
 	 <script type="text/javascript" language="javascript" src="https://framework-gb.cdn.gob.mx/sso/js/plugin/fiel-sat/1.0/sat-fiel-1.0.0.source.all.js"></script>
+
 	</head>
 	<body>
 		<!-- Contenido -->
@@ -53,13 +54,12 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-5 control-label" for="dosAp">Segundo Apellido&nbsp;<span id="req_star_dosAp" class="form-text">*</span>:</label>
+					<label class="col-sm-5 control-label" for="dosAp">Segundo Apellido&nbsp;:</label>
 					<div class="col-sm-5">
 						<input id="dosAp" value=""  Class="form-control"
-						 required="true" onblur=""   placeholder="Segundo Apellido de la persona a verificar"
+						 required="false" onblur=""   placeholder="Segundo Apellido de la persona a verificar"
 						requiredMessage="Segundo Apellido es obligatorio"
 						/>
-						<small id="req_dosAp" class="form-text form-text-error hidden">Este campo es obligatorio</small>
 						<small id="req_type_dosAp" class="form-text form-text-error hidden">Este campo NO es texto</small>
 					</div>
 				</div>
@@ -85,13 +85,12 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-5 control-label" for="rfc">RFC&nbsp;<span id="req_star_rfc" class="form-text">*</span>:</label>
+					<label class="col-sm-5 control-label" for="rfc">RFC&nbsp;:</label>
 					<div class="col-sm-5">
 						<input id="rfc" value="" Class="form-control"
-						 required="true" onblur=""  onkeydown="upperCase(this)"  placeholder="RFC de la persona a verificar"
+						 required="false" onblur=""  onkeydown="upperCase(this)"  placeholder="RFC de la persona a verificar"
 						requiredMessage="RFC es Requerido"
 						/>
-						<small id="req_rfc" class="form-text form-text-error hidden">Este campo es obligatorio</small>
 						<small id="req_type_rfc" class="form-text form-text-error hidden">Formato no v&aacute;lido</small>
 					</div>
 				</div>
@@ -109,17 +108,44 @@
 							<Button  Class="btn btn-primary" action="firma.html" value="">Siguiente</button>
 					</div>
 				</div>
+				<div class="row" >
+					<div  class="col-md-12" align="center">
+					&nbsp;
+					</div>
+			 </div>
 			</form>
 	    </div>
 		</div>
 	</main>
-		<script type="text/javascript">
-					$(document).ready(function() {
-							$('#fechaN').datepicker();
-						});
+	<script src="js/jQuery/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="js/jQuery/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="https://framework-gb.cdn.gob.mx/assets/scripts/jquery-ui-datepicker.js"></script>
+	<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#fechaN').datepicker({changeYear: true}).on('changeDate', function(e) {
+			var nameS=	this.id.split(':');
+			var name=	 nameS[nameS.length-1];
+			var reqId = "#req_" +name;
+			var reqIdStar = "#req_star_" +  name;
+
+			if ($(this).val().length === 0 || $(this).val() === '-1') {
+	//	 		if 	(validarVacio ( $(this)))
+				$(this).addClass('form-control-error');
+				$(reqId).removeClass('hidden');
+				$(reqIdStar).addClass('form-text-error');
+
+			} else {
+
+				$(this).removeClass('form-control-error');
+				$(reqId).addClass('hidden');
+				$(reqIdStar).removeClass('form-text-error');
+
+			}
+			});
+	});
 		</script>
-		<script src="https://framework-gb.cdn.gob.mx/gobmx.js"></script>
-		<script src="js/jQuery/jquery.min.js"></script>
+
 
   </body>
 </html>
